@@ -22,4 +22,4 @@ jobs:
 
       - name: Deploy via SSH
         run: |
-          run: ssh -i ~/.ssh/id_ed25519 root@188.166.17.104 'bash /root/deploy.sh'
+          ssh root@188.166.17.104 'cd /root/jarvis && git pull origin master'
