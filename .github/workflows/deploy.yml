@@ -21,4 +21,5 @@ jobs:
           ssh-keyscan -H 188.166.17.104 >> ~/.ssh/known_hosts
 
       - name: Deploy via SSH
+        run: |
           run: ssh -i ~/.ssh/id_ed25519 root@188.166.17.104 'bash /root/deploy.sh'
