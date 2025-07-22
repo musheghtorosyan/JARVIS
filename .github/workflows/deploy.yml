@@ -20,6 +20,11 @@ jobs:
           chmod 600 ~/.ssh/id_ed25519
           ssh-keyscan -H 188.166.17.104 >> ~/.ssh/known_hosts
 
-      - name: Deploy via SSH
+      - name: Deploy via SSH and Docker Compose
         run: |
-          ssh root@188.166.17.104 'cd /root/jarvis && git pull origin master'
+          ssh -i ~/.ssh/id_ed25519 root@188.166.17.104 << 'EOF'
+            cd /root/jarvis || exit
+            git pull origin master
+            docker compose pull
+            docker compose up -d --build
+          EOF
